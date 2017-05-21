@@ -22,12 +22,16 @@ func run() int {
 			fmt.Print(text)
 		}
 	} else {
-		b, err := ioutil.ReadFile(os.Args[1])
-		if err != nil {
-			fmt.Println(fmt.Errorf("cat: %s: No such file or directory", os.Args[1]))
-			return 1
+		args := os.Args[1:]
+
+		for _, v := range args {
+			b, err := ioutil.ReadFile(v)
+			if err != nil {
+				fmt.Println(fmt.Errorf("cat: %s: No such file or directory", v))
+				return 1
+			}
+			fmt.Print(string(b))
 		}
-		fmt.Print(string(b))
 	}
 	return 0
 }
