@@ -24,6 +24,7 @@ func run() int {
 	} else {
 		b, err := ioutil.ReadFile(os.Args[1])
 		if err != nil {
+			fmt.Println(fmt.Errorf("cat: %s: No such file or directory", os.Args[1]))
 			return 1
 		}
 		fmt.Print(string(b))
