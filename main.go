@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"io/ioutil"
 	"os"
 )
 
@@ -20,6 +21,12 @@ func run() int {
 			}
 			fmt.Print(text)
 		}
+	} else {
+		b, err := ioutil.ReadFile(os.Args[1])
+		if err != nil {
+			return 1
+		}
+		fmt.Print(string(b))
 	}
 	return 0
 }
